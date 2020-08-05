@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>hitori_mahjong</title>
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+    </head>
+
+    <body class="vue">
+        <div id="app">
+            <div id="dora-hyouji">
+                <p id="dora-hyouji-text"> ドラ表示 </p><img id="dora-hyouji-image" v-bind:src="doraHyouji.imgSrc">
+            </div>
+            <div id="sutehai">
+                <template v-for="(index, hai) in sutehai"> <br v-if="(index%6) == 0"><img v-bind:src="hai.imgSrc"></template>
+            </div>
+            <div id="tehai">
+                <img v-for="(index, hai) in tehai" v-bind:src="hai.imgSrc" v-on:click="change(index)">
+            </div>
+            <div class="agari-block" v-if="agari">
+                <div class="yaku-text">
+                    <p v-for="y in yaku">
+                        {{y}}
+                    </p>
+                </div>
+                <div class="yaku-fan">
+                    <p v-for="f in fan">
+                        {{f}} 翻
+                    </p>
+                </div>
+                <hr>
+                <div id="fan-fu">
+                    <div id="fu-text" v-if="totalFan<5">{{fu}} 符</div>
+                    <div id="fan-text">{{totalFan}} 翻</div>
+                    <div id="point-text">
+                        <p>{{point}} 点</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script src="framework\\vue.min.js"></script>
+        <script src="js\\mahjong-util.js"></script>
+        <script src="js\\agari-classifier.js"></script>
+        <script src="js\\yaku-classifier.js"></script>
+        <script src="js\\main.js"></script>
+    </body>
+</html>
